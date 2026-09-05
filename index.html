@@ -793,21 +793,6 @@ h1{
             Like you So Much Mam,My Favourite Teacher🪷❤️.
         </p>
 
-        <div class="music-player" style="margin: 18px auto; text-align: center;">
-            <iframe
-                id="musicFrame"
-                width="280"
-                height="158"
-                src="https://www.youtube.com/embed/S5WXNQ1LPh8?enablejsapi=1&origin=https%3A%2F%2Fabi06311520-ai.github.io&autoplay=0&loop=1&playlist=S5WXNQ1LPh8&rel=0"
-                title="Music for Deepa Mam"
-                frameborder="0"
-                allow="autoplay; encrypted-media"
-                allowfullscreen
-            ></iframe>
-            <button id="playMusicBtn" type="button" style="margin-top: 10px; padding: 10px 18px; border: 0; border-radius: 999px; background: #c52f75; color: white; font-weight: 700; cursor: pointer;">▶ Play Song</button>
-            <p style="margin: 8px 0 0; font-size: 0.9rem;">If the song is not automatic, press “Play Song” once.</p>
-        </div>
-
 
             <div class="photo-section">
 
@@ -919,35 +904,12 @@ const openBtn =
 const closeBtn =
     document.getElementById("closeBtn");
 
-const musicFrame =
-    document.getElementById("musicFrame");
-
-const playMusicBtn =
-    document.getElementById("playMusicBtn");
-
-const musicUrl =
-    "https://www.youtube.com/embed/S5WXNQ1LPh8?enablejsapi=1&origin=https%3A%2F%2Fabi06311520-ai.github.io&autoplay=0&loop=1&playlist=S5WXNQ1LPh8&rel=0";
-
-function playMusic() {
-    musicFrame.contentWindow.postMessage(JSON.stringify({
-        event: "command",
-        func: "playVideo",
-        args: []
-    }), "*");
-}
-
 
 openBtn.addEventListener("click", () => {
 
     modal.classList.add("show");
 
-    // Try to start from the greeting-card click, then keep a direct fallback.
-    musicFrame.src = musicUrl;
-    setTimeout(playMusic, 900);
-
 });
-
-playMusicBtn.addEventListener("click", playMusic);
 
 
 /* =========================
