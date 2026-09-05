@@ -798,13 +798,14 @@ h1{
                 id="musicFrame"
                 width="280"
                 height="158"
-                src="https://www.youtube.com/embed/S5WXNQ1LPh8?autoplay=1&mute=0&loop=1&playlist=S5WXNQ1LPh8&rel=0"
+                src="https://www.youtube.com/embed/S5WXNQ1LPh8?enablejsapi=1&origin=https%3A%2F%2Fabi06311520-ai.github.io&autoplay=0&loop=1&playlist=S5WXNQ1LPh8&rel=0"
                 title="Music for Deepa Mam"
                 frameborder="0"
                 allow="autoplay; encrypted-media"
                 allowfullscreen
             ></iframe>
-            <p style="margin: 8px 0 0; font-size: 0.9rem;">If the music does not start automatically, press play above.</p>
+            <button id="playMusicBtn" type="button" style="margin-top: 10px; padding: 10px 18px; border: 0; border-radius: 999px; background: #c52f75; color: white; font-weight: 700; cursor: pointer;">▶ Play Song</button>
+            <p style="margin: 8px 0 0; font-size: 0.9rem;">If the song is not automatic, press “Play Song” once.</p>
         </div>
 
 
@@ -921,19 +922,32 @@ const closeBtn =
 const musicFrame =
     document.getElementById("musicFrame");
 
+const playMusicBtn =
+    document.getElementById("playMusicBtn");
+
 const musicUrl =
-    "https://www.youtube.com/embed/S5WXNQ1LPh8?autoplay=1&mute=0&loop=1&playlist=S5WXNQ1LPh8&rel=0";
+    "https://www.youtube.com/embed/S5WXNQ1LPh8?enablejsapi=1&origin=https%3A%2F%2Fabi06311520-ai.github.io&autoplay=0&loop=1&playlist=S5WXNQ1LPh8&rel=0";
+
+function playMusic() {
+    musicFrame.contentWindow.postMessage(JSON.stringify({
+        event: "command",
+        func: "playVideo",
+        args: []
+    }), "*");
+}
 
 
 openBtn.addEventListener("click", () => {
 
     modal.classList.add("show");
 
-    // Reload the player from this user interaction so browsers that block
-    // sound on page load can start the music when the card is opened.
+    // Try to start from the greeting-card click, then keep a direct fallback.
     musicFrame.src = musicUrl;
+    setTimeout(playMusic, 900);
 
 });
+
+playMusicBtn.addEventListener("click", playMusic);
 
 
 /* =========================
