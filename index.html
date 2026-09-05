@@ -793,6 +793,20 @@ h1{
             Like you So Much Mam,My Favourite Teacher🪷❤️.
         </p>
 
+        <div class="music-player" style="margin: 18px auto; text-align: center;">
+            <iframe
+                id="musicFrame"
+                width="280"
+                height="158"
+                src="https://www.youtube.com/embed/S5WXNQ1LPh8?autoplay=1&mute=0&loop=1&playlist=S5WXNQ1LPh8&rel=0"
+                title="Music for Deepa Mam"
+                frameborder="0"
+                allow="autoplay; encrypted-media"
+                allowfullscreen
+            ></iframe>
+            <p style="margin: 8px 0 0; font-size: 0.9rem;">If the music does not start automatically, press play above.</p>
+        </div>
+
 
             <div class="photo-section">
 
@@ -904,10 +918,20 @@ const openBtn =
 const closeBtn =
     document.getElementById("closeBtn");
 
+const musicFrame =
+    document.getElementById("musicFrame");
+
+const musicUrl =
+    "https://www.youtube.com/embed/S5WXNQ1LPh8?autoplay=1&mute=0&loop=1&playlist=S5WXNQ1LPh8&rel=0";
+
 
 openBtn.addEventListener("click", () => {
 
     modal.classList.add("show");
+
+    // Reload the player from this user interaction so browsers that block
+    // sound on page load can start the music when the card is opened.
+    musicFrame.src = musicUrl;
 
 });
 
